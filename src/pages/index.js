@@ -1,118 +1,105 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import React, { Suspense } from "react";
+import Fade from 'react-reveal/Fade';
+import Head from "next/head";
 
-const inter = Inter({ subsets: ['latin'] })
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from "@react-three/drei";
+
+import Box from '@/components/Box';
+import SphereComponent from "@/components/SphereComponent";
+import Intro from "@/components/Intro";
+import AnimatedSphere from "@/components/AnimatedSphere";
+import TorusKnot from "@/components/TorusKnot";
+
 
 export default function Home() {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <div className="min-h-screen bg-[url('../../images/landingpicture.jpg')] bg-fixed bg-no-repeat bg-cover bg-center">
+        <Head>
+          <title>Quentin Valen</title>
+          <link rel="icon" href="public/images/favicon.ico" />
+        </Head>
+
+        <div className="flex flex-row justify-center items-center">
+          <div className="absolute h-[17vh] z-10 mr-16 mb-60">
+            <Canvas>
+              <ambientLight intensity={0.5} />
+              <directionalLight position={[-2, 5, 2]} intensity={1} />
+              <Suspense fallback={null}>
+                <SphereComponent />
+              </Suspense>
+            </Canvas>
+          </div>
+
+          <div className="absolute h-[15vh] z-10 mr-36 mb-72">
+            <Canvas>
+              <ambientLight intensity={0.5} />
+              <directionalLight position={[-2, 5, 2]} intensity={1} />
+              <Suspense fallback={null}>
+                <SphereComponent />
+              </Suspense>
+            </Canvas>
+          </div>
+
+          <div className="flex flex-row justify-between items-center ml-64">
+            <div className="absolute h-[20vh] z-10 ml-96 mb-48">
+              <Canvas>
+                <ambientLight intensity={0.5} />
+                <directionalLight position={[-2, 5, 2]} intensity={1} />
+                <Suspense fallback={null}>
+                  <SphereComponent />
+                </Suspense>
+              </Canvas>
+            </div>
+
+
+            <div className="flex flex-col">
+              
+              <h1 className="text-white text-7xl relative z-0">HI, I AM{" "}<span className="bg-gradient-to-r from-[#d540ba] via-[#86A8E7] to-[#5FFBF1] inline-block text-transparent bg-clip-text">QUENTIN</span></h1>
+
+              <div className="w-[20vw]">
+                <div className="z-0 relative">
+                  <Intro />
+                </div>
+              </div>
+            </div>
+
+            <div className="h-[50vh] w-[53vw]">
+              <Canvas>
+                <OrbitControls enableZoom={false} />
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} />
+                <Suspense fallback={null}>
+                  <AnimatedSphere />
+                </Suspense>
+              </Canvas>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="min-h-screen bg-[url('../../images/pinkmountain.jpg')] bg-fixed bg-no-repeat bg-cover bg-center">
+        <Fade bottom duration={2000}>
+          <div className="flex justify-center">
+            <div className="mt-5">
+              <h1 className="text-white text-7xl mt-10">PERSONAL INFO</h1>
+            </div>
+          </div>
+        </Fade>
       </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </>
+  );
 }
+
+
+{/* <div className="flex h-64">
+  <Canvas className="sphere">
+    <OrbitControls enableZoom={false} />
+    <ambientLight intensity={0.5} />
+    <directionalLight position={[-2, 5, 2]} intensity={1} />
+    <Suspense fallback={null}>
+      <AnimatedSphere />
+    </Suspense>
+  </Canvas>
+</div> */}
